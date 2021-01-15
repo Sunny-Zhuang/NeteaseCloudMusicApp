@@ -5,7 +5,6 @@ export const FooterWrapper = styled.div`
     width:100%;
     height:10vh;
     bottom:0;
-    background-color: #f9f9f9;
     display:flex;
     justify-content: space-between;
     align-items:flex-start;
