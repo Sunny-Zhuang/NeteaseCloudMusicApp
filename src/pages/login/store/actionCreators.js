@@ -18,3 +18,13 @@ export const checkLoginStatus = ()=>{
     }
 }
 
+export const saveNumber = (number)=>{
+    return (dispatch)=>{
+        const action = {
+            type:ActionTypes.SAVE_NUMBER,
+            number
+        }
+        dispatch(action)
+    }
+}
+

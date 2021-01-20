@@ -3,6 +3,7 @@ import User from './pages/user'
 import Music from './pages/music'
 import Login from './pages/login'
 import LoginByPhone from './pages/login/pages/loginbyphone'
+import LoginByCaptcha from './pages/login/pages/loginwithcaptcha'
 
 export const RouterConfig = [
   {
@@ -28,6 +29,14 @@ export const RouterConfig = [
   {
     path: '/loginbyphone',
     component: LoginByPhone,
+    sceneConfig: {
+      enter: 'from-right',
+      exit: 'to-right'
+    }
+  },
+  {
+    path: '/loginbycaptcha',
+    component: LoginByCaptcha,
     sceneConfig: {
       enter: 'from-right',
       exit: 'to-right'
