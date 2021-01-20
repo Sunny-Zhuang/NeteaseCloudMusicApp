@@ -4,19 +4,19 @@ import {
     LoginByPhoneInput,
     LoginByPhoneButton
 } from './style'
+import {connect} from 'react-redux'
 import axios from 'axios'
+import * as ActionCreators from '../../store/actionCreators'
 
 class LoginByPhone extends PureComponent {
     constructor(props) {
         super(props)
         this.handleInput = this.handleInput.bind(this)
         this.handleClickButton = this.handleClickButton.bind(this)
-        this.state = {
-            number: ''
-        }
     }
 
     render() {
+        const {inputNumber} = this.props
         return (
            
             <LoginByPhoneWrapper>
@@ -28,25 +28,27 @@ class LoginByPhone extends PureComponent {
                         <input type='number' placeholder='输入手机号' onChange={this.handleInput}></input>
                     </div>
                 </LoginByPhoneInput>
-                <LoginByPhoneButton className={this.state.number ? '' : 'notext'} onClick={this.handleClickButton}>下一步</LoginByPhoneButton>
+                <LoginByPhoneButton className={inputNumber ? '' : 'notext'} onClick={this.handleClickButton}>下一步</LoginByPhoneButton>
             </LoginByPhoneWrapper>
         )
     }
     handleInput(e) {
         const value = e.target.value;
-        this.setState(() => {
-            return { number: value }
-        })
+        this.props.saveNumber(value);
+        // this.setState(() => {
+        //     return { number: value }
+        // })
     }
     handleClickButton(){
         const numberReg=/^1[3-9][0-9]{9}$/
-        if(!numberReg.test(this.state.number)){
+        const inputNumber =this.props.inputNumber
+        if(!numberReg.test(inputNumber)){
             console.error('input error')
         }else{
-            axios.get('http://localhost:4000/captcha/sent?phone='+this.state.number,{withCredentials: true }).then((res)=>{
-                console.error('res',res)
+            axios.get('http://localhost:4000/captcha/sent?phone='+inputNumber,{withCredentials: true }).then((res)=>{
                 if(res?.data?.data===true){
-                    this.props.history.push('/')
+                    this.props.saveNumber(inputNumber);
+                    this.props.history.push('/loginbycaptcha')
                 }
             })
         }
@@ -54,5 +56,20 @@ class LoginByPhone extends PureComponent {
     
 }
 
+const mapState = (state) =>{
+    return {
+        inputNumber:state.get('login').get('number')
+    }
+}
 
-export default LoginByPhone;
+const mapProps = (dispatch)=>{
+    return {
+        saveNumber(number){
+            dispatch(ActionCreators.saveNumber(number))
+        }
+
+    }
+}
+
+
+export default connect(mapState,mapProps)(LoginByPhone);

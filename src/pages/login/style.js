@@ -29,6 +29,9 @@ export const LoginButtonPhone = styled.div`
     font-weight:bold;
 `
 
+var fn = myModule()
+fn.doOtherthing() //dfanjds
+
 export const LoginButtonExperience = styled.div`
     height:6vh;
     width:80vw;
