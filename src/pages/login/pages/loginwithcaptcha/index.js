@@ -5,6 +5,7 @@ import {
 } from './style'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import * as ActionCreators from '../../store/actionCreators'
 
 class LoginByCaptcha extends PureComponent {
     constructor(props) {
@@ -131,6 +132,7 @@ class LoginByCaptcha extends PureComponent {
         const inputNumber = this.props.inputNumber
         axios.get('http://localhost:4000/captcha/verify?phone='+inputNumber+'&captcha='+inputCaptcha,{withCredentials: true }).then((res)=>{
             if(res?.data?.data===true){
+                this.props.updateLoginStatus()
                 this.props.history.push('/')
             }
         }).catch((error)=>{
@@ -162,6 +164,14 @@ class LoginByCaptcha extends PureComponent {
 
 }
 
+const mapProps=(dispatch)=>{
+    return{
+        updateLoginStatus(){
+            dispatch(ActionCreators.updateLoginStatus())
+        }
+    } 
+}
+
 const mapState = (state) => {
     return {
         inputNumber: state.get('login').get('number')
@@ -169,4 +179,4 @@ const mapState = (state) => {
 }
 
 
-export default connect(mapState, null)(LoginByCaptcha);
+export default connect(mapState, mapProps)(LoginByCaptcha);
