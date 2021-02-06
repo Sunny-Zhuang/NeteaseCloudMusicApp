@@ -28,3 +28,12 @@ export const saveNumber = (number)=>{
     }
 }
 
+export const updateLoginStatus = ()=>{
+    return (dispatch)=>{
+        const action = {
+            type:ActionTypes.UPDATE_LOGIN_STATUS,
+        }
+        dispatch(action)
+    }
+}
+

@@ -5,6 +5,7 @@ import {
     FooterFont
 } from './style'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components';
 
 class Footer extends PureComponent {
     constructor(props) {
