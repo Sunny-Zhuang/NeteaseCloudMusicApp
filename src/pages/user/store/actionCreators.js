@@ -1,6 +1,6 @@
 import axios from 'axios'
 import * as ActionTypes from './actionTypes'
-import {fromJS} from 'immutable'
+// import {fromJS} from 'immutable'
 
 export const getUserDetail = ()=>{
     return (dispatch)=>{

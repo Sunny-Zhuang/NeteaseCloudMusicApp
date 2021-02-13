@@ -83,12 +83,12 @@ class LoginByCaptcha extends PureComponent {
             var inputCaptcha =''
             for(let i =0;i<inputList.length;i++){
                 inputCaptcha+=inputList[i].value;
-                if((index+1)==i){
-                    inputList[index].value = inputValue[0];
-                    inputList[i].value = inputValue[1];
-                    updatedInputList[i].isfocus = true;
-                }else{
-                    updatedInputList[i].isfocus = false;
+                if (index + 1 === i) {
+                  inputList[index].value = inputValue[0];
+                  inputList[i].value = inputValue[1];
+                  updatedInputList[i].isfocus = true;
+                } else {
+                  updatedInputList[i].isfocus = false;
                 }
             }
             console.error('call api',inputCaptcha)
@@ -96,13 +96,13 @@ class LoginByCaptcha extends PureComponent {
         }else{
             if(inputValue?.length===2){
                 for(let i =0;i<inputList.length;i++){
-                    if((index+1)==i){
-                        inputList[index].value = inputValue[0];
-                        inputList[i].value = inputValue[1];
-                        updatedInputList[i].isfocus = true;
-                        inputList[i].focus()
-                    }else{
-                        updatedInputList[i].isfocus = false;
+                    if (index + 1 === i) {
+                      inputList[index].value = inputValue[0];
+                      inputList[i].value = inputValue[1];
+                      updatedInputList[i].isfocus = true;
+                      inputList[i].focus();
+                    } else {
+                      updatedInputList[i].isfocus = false;
                     }
                 }
             }

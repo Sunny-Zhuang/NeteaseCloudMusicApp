@@ -28,17 +28,23 @@ class User extends PureComponent{
                     </div>
                     <UserPlayList>
                         {playList.map((item)=>{
-                            return(
-                                <div className="play-item-wrapper">
-                                    <div className="play-item-left">
-                                        <img className="image" src={item?.coverImgUrl} />
-                                    </div>
-                                    <div className="play-item-right">
-                                        <div className="upper-font">{item?.name}</div>
-                                        <div className="down-font">{item?.trackCount}首</div>
-                                    </div>
+                            return (
+                              <div className="play-item-wrapper">
+                                <div className="play-item-left">
+                                  <img
+                                    className="image"
+                                    src={item?.coverImgUrl}
+                                    alt=""
+                                  />
                                 </div>
-                            )
+                                <div className="play-item-right">
+                                  <div className="upper-font">{item?.name}</div>
+                                  <div className="down-font">
+                                    {item?.trackCount}首
+                                  </div>
+                                </div>
+                              </div>
+                            );
                         })}
                     </UserPlayList>
                 </UserLoginInfoWrapper>
