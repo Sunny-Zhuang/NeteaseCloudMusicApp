@@ -29,7 +29,7 @@ class User extends PureComponent{
                     <UserPlayList>
                         {playList.map((item)=>{
                             return (
-                              <div className="play-item-wrapper">
+                              <div key={item.id} className="play-item-wrapper">
                                 <div className="play-item-left">
                                   <img
                                     className="image"
@@ -70,7 +70,8 @@ class User extends PureComponent{
         )
     }
     componentDidMount(){
-        this.props.checkLoginStatus()
+        // 先不要纠结登录
+        // this.props.checkLoginStatus()
         this.props.getUserDetail()
     }
 }
