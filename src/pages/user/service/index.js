@@ -1,7 +1,8 @@
 /* eslint-disable import/no-anonymous-default-export */
 import DataBucket from "../../../api/index";
-import adaptor from '../service/adaptor'
-const dataBucket = new DataBucket();
+import adaptor from "../service/adaptor";
+import fetchLib from "../../../api/lib/fetch";
+const dataBucket = new DataBucket(fetchLib);
 
 function getPlayList(params) {
   return dataBucket.getData(
@@ -10,9 +11,9 @@ function getPlayList(params) {
       params,
     },
     {
-      mock: true,
-      mockData: require('../mock/playlist.json'),
-      adaptor: adaptor.playlist
+      // mock: true,
+      // mockData: require("../mock/playlist.json"),
+      adaptor: adaptor.playlist,
     }
   );
 }
