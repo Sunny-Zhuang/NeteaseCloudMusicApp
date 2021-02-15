@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import { fromJS } from 'immutable';
 import * as ActionTypes from './actionTypes'
 

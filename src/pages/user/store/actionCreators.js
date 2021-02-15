@@ -1,20 +1,18 @@
-import axios from 'axios'
 import * as ActionTypes from './actionTypes'
-import {fromJS} from 'immutable'
-
-export const getUserDetail = ()=>{
-    return (dispatch)=>{
-        axios.post('http://localhost:4000/user/playlist?uid=32953014',{ withCredentials: true }).then((res)=>{
-            console.error('res',res.data.playlist)
-            if(res?.data?.playlist){
-                const action = {
-                    type:ActionTypes.GET_USER_DETAIL,
-                    data:res.data.playlist
-                }
-                dispatch(action)
+import service from "../service";
+export const getUserDetail = () => {
+    return async (dispatch) => {
+        try {
+            const playlist = await service.getPlayList({})
+            // console.log('++ getPlayList', playlist)
+            const action = {
+                type: ActionTypes.GET_USER_DETAIL,
+                data: playlist
             }
-        })
-        
+            dispatch(action)
+        } catch (error) {
+            console.log('== getPlayList', error)
+        }
     }
 }
 
